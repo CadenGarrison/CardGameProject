@@ -8,22 +8,22 @@ public class Deck
 		
 		public static void fillDeck()
 			{
-			deck.add(new Card("ace", "hearts", 11));
-			deck.add(new Card("ace", "clubs", 11));
-			deck.add(new Card("ace", "spades", 11));
-			deck.add(new Card("ace", "diamonds", 11));
-			deck.add(new Card("king", "hearts", 10));
-			deck.add(new Card("king", "clubs", 10));
-			deck.add(new Card("king", "spades", 10));
-			deck.add(new Card("king", "diamonds", 10));
-			deck.add(new Card("queen", "hearts", 10));
-			deck.add(new Card("queen", "clubs", 10));
-			deck.add(new Card("queen", "spades", 10));
-			deck.add(new Card("queen", "diamonds", 10));
-			deck.add(new Card("jack", "hearts", 10));
-			deck.add(new Card("jack", "clubs", 10));
-			deck.add(new Card("jack", "spades", 10));
-			deck.add(new Card("jack", "diamonds", 10));
+			deck.add(new Card("ace", "hearts", 1));
+			deck.add(new Card("ace", "clubs", 1));
+			deck.add(new Card("ace", "spades", 1));
+			deck.add(new Card("ace", "diamonds", 1));
+			deck.add(new Card("king", "hearts", 13));
+			deck.add(new Card("king", "clubs", 13));
+			deck.add(new Card("king", "spades", 13));
+			deck.add(new Card("king", "diamonds", 13));
+			deck.add(new Card("queen", "hearts", 12));
+			deck.add(new Card("queen", "clubs", 12));
+			deck.add(new Card("queen", "spades", 12));
+			deck.add(new Card("queen", "diamonds", 12));
+			deck.add(new Card("jack", "hearts", 11));
+			deck.add(new Card("jack", "clubs", 11));
+			deck.add(new Card("jack", "spades", 11));
+			deck.add(new Card("jack", "diamonds", 11));
 			deck.add(new Card("ten", "hearts", 10));
 			deck.add(new Card("ten", "clubs", 10));
 			deck.add(new Card("ten", "spades", 10));
