@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 import java.util.ArrayList;
 
 public class PlayGame
@@ -13,6 +14,8 @@ public class PlayGame
 		static int player1Value = 0;
 		static int player2Value = 0;
 		static int firstSeqCard;
+		static int correctError1;
+		static int correctError2;
 		static int secSeqCard;
 		static int thirdSeqCard;
 		static int fourthSeqCard;
@@ -34,6 +37,7 @@ public class PlayGame
 				while (isPlaying = true)
 					{
 				playGame();
+				playGame2();
 				checkForOut();
 					}
 				
@@ -51,7 +55,7 @@ public class PlayGame
 			else if (knowsGame == 2)
 				{
 					System.out.println("The object of the game is to reduce the value of the cards in your hand to five or below");
-					System.out.println("Ace counts for one, all the way up to King, which counts for thirteen.");
+					System.out.println("Ace counts for one, all the way up to King, which counts for thirteen. Your cards will be dealt automatically");
 					System.out.println("Cards may be laid down independently, in doubles or triples, or in sequences.");
 					System.out.println("Sequences must be of the same suit. A sequence of five is known as a dumbol.");
 					System.out.println("As soon as you reach five or below, you may lay down your hand to show the other competitors.");
@@ -85,8 +89,13 @@ public class PlayGame
 			topCard = player1.get(player1Play);
 			player1.remove(player1Play);
 			System.out.println("The top card is now a " + topCard.getRank() + " of " + topCard.getSuit() + ".");
+			player1.add(Deck.deck.get(0));
 			}
 			
+		}
+		
+		public static void playGame2()
+		{
 			System.out.println("Player 2, your hand is:");
 			for (int i=0; i<player2.size(); i++)
 				{
@@ -104,8 +113,8 @@ public class PlayGame
 			topCard = player2.get(player2Play);
 			player2.remove(player2Play);
 			System.out.println("The top card is now a " + topCard.getRank() + " of " + topCard.getSuit() + ".");
+			player2.add(Deck.deck.get(0));
 			}
-			
 		}
 		
 		public static void sequences1()
@@ -119,6 +128,7 @@ public class PlayGame
 						case 0:
 							System.out.println("What is card " + (i+1) + "?");
 							firstSeqCard = userIntInput.nextInt();
+							topCard = player1.get(firstSeqCard-1);
 							player1.remove(firstSeqCard-1);
 							break;
 						case 1:
@@ -128,7 +138,25 @@ public class PlayGame
 								}
 							System.out.println("What is card " + (i+1) + "?");
 							secSeqCard = userIntInput.nextInt();
+							if (player1.get(secSeqCard-1).getRank().equals(topCard.getRank()))
+								{
+							topCard = player1.get(secSeqCard-1);
 							player1.remove(secSeqCard-1);
+								}
+							else 
+								{
+									System.out.println("Bad boy. The ranks of the cards must match.");
+									System.out.println("You played a " + topCard.getRank() + " of " + topCard.getSuit() + ". Do you wish to add another card? (1) Yes (2) No");
+									correctError1 = userIntInput.nextInt();
+									if (correctError1 == 1)
+										{
+											sequences1();
+										}
+									else
+										{
+											playGame2();
+										}
+								}
 							break;
 						case 2:
 							for (int b=0; b<player1.size(); b++)
@@ -137,7 +165,25 @@ public class PlayGame
 								}
 							System.out.println("What is card " + (i+1) + "?");
 							thirdSeqCard = userIntInput.nextInt();
+							if (player1.get(thirdSeqCard-1).getRank().equals(topCard.getRank()))
+								{
+							topCard = player1.get(thirdSeqCard-1);
 							player1.remove(thirdSeqCard-1);
+								}
+							else 
+								{
+									System.out.println("Bad boy. The ranks of the cards must match.");
+									System.out.println("You played a " + topCard.getRank() + " of " + topCard.getSuit() + ". Do you wish to add another card? (1) Yes (2) No");
+									correctError1 = userIntInput.nextInt();
+									if (correctError1 == 1)
+										{
+											sequences1();
+										}
+									else
+										{
+											playGame2();
+										}
+								}
 							break;
 						case 3:
 							for (int c=0; c<player1.size(); c++)
@@ -146,7 +192,25 @@ public class PlayGame
 								}
 							System.out.println("What is card " + (i+1) + "?");
 							fourthSeqCard = userIntInput.nextInt();
+							if (player1.get(fourthSeqCard-1).getRank().equals(topCard.getRank()))
+								{
+							topCard = player1.get(fourthSeqCard-1);
 							player1.remove(fourthSeqCard-1);
+								}
+							else 
+								{
+									System.out.println("Bad boy. The ranks of the cards must match.");
+									System.out.println("You played a " + topCard.getRank() + " of " + topCard.getSuit() + ". Do you wish to add another card? (1) Yes (2) No");
+									correctError1 = userIntInput.nextInt();
+									if (correctError1 == 1)
+										{
+											sequences1();
+										}
+									else
+										{
+											playGame2();
+										}
+								}
 							break;
 						case 4:
 							for (int d=0; d<player1.size(); d++)
@@ -155,13 +219,33 @@ public class PlayGame
 								}
 							System.out.println("What is card " + (i+1) + "?");
 							fifthSeqCard = userIntInput.nextInt();
+							if (player1.get(fifthSeqCard-1).getRank().equals(topCard.getRank()))
+								{
+							topCard = player1.get(fifthSeqCard-1);
 							player1.remove(fifthSeqCard-1);
-							break;	
+								}
+							else 
+								{
+									System.out.println("Bad boy. The ranks of the cards must match.");
+									System.out.println("You played a " + topCard.getRank() + " of " + topCard.getSuit() + ". Do you wish to add another card? (1) Yes (2) No");
+									correctError1 = userIntInput.nextInt();
+									if (correctError1 == 1)
+										{
+											sequences1();
+										}
+									else
+										{
+											playGame2();
+										}
+								}
+							break;
+							
 					}
+					playGame2();
 					
 					// AT SOME POINT WE NEED TO VERIFY THAT THE RANKS OF THE SEQUENCE CARDS MATCH
-					// ALSO WE NEED SEPARATE SEQUENCE METHODS FOR PLAYERS 1 AND 2
-					// Every time we remove a card, we change the size of the ArrayList for hand, so simply removing in sequence will not work. The better idea is to show the new hand after the first card is removed and have the user make a revised decision
+					// ALSO WE NEED TO CODE SEQUENCES LIKE DUMBOLS
+					
 				}
 			
 			
@@ -179,6 +263,7 @@ public class PlayGame
 						case 0:
 							System.out.println("What is card " + (i+1) + "?");
 							firstSeqCard = userIntInput.nextInt();
+							topCard = player2.get(firstSeqCard-1);
 							player2.remove(firstSeqCard-1);
 							break;
 						case 1:
@@ -188,7 +273,25 @@ public class PlayGame
 								}
 							System.out.println("What is card " + (i+1) + "?");
 							secSeqCard = userIntInput.nextInt();
+							if (player2.get(secSeqCard-1).getRank().equals(topCard.getRank()))
+								{
+							topCard = player2.get(secSeqCard-1);
 							player2.remove(secSeqCard-1);
+								}
+							else 
+								{
+									System.out.println("Bad boy. The ranks of the cards must match.");
+									System.out.println("You played a " + topCard.getRank() + " of " + topCard.getSuit() + ". Do you wish to add another card? (1) Yes (2) No");
+									correctError2 = userIntInput.nextInt();
+									if (correctError2 == 1)
+										{
+											sequences2();
+										}
+									else
+										{
+											playGame();
+										}
+								}
 							break;
 						case 2:
 							for (int b=0; b<player2.size(); i++)
@@ -197,7 +300,25 @@ public class PlayGame
 								}
 							System.out.println("What is card " + (i+1) + "?");
 							thirdSeqCard = userIntInput.nextInt();
+							if (player2.get(thirdSeqCard-1).getRank().equals(topCard.getRank()))
+								{
+							topCard = player2.get(thirdSeqCard-1);
 							player2.remove(thirdSeqCard-1);
+								}
+							else 
+								{
+									System.out.println("Bad boy. The ranks of the cards must match.");
+									System.out.println("You played a " + topCard.getRank() + " of " + topCard.getSuit() + ". Do you wish to add another card? (1) Yes (2) No");
+									correctError2 = userIntInput.nextInt();
+									if (correctError2 == 1)
+										{
+											sequences2();
+										}
+									else
+										{
+											playGame();
+										}
+								}
 							break;
 						case 3:
 							for (int c=0; c<player2.size(); c++)
@@ -206,7 +327,25 @@ public class PlayGame
 								}
 							System.out.println("What is card " + (i+1) + "?");
 							fourthSeqCard = userIntInput.nextInt();
+							if (player2.get(fourthSeqCard-1).getRank().equals(topCard.getRank()))
+								{
+							topCard = player2.get(fourthSeqCard-1);
 							player2.remove(fourthSeqCard-1);
+								}
+							else 
+								{
+									System.out.println("Bad boy. The ranks of the cards must match.");
+									System.out.println("You played a " + topCard.getRank() + " of " + topCard.getSuit() + ". Do you wish to add another card? (1) Yes (2) No");
+									correctError2 = userIntInput.nextInt();
+									if (correctError2 == 1)
+										{
+											sequences2();
+										}
+									else
+										{
+											playGame();
+										}
+								}
 							break;
 						case 4:
 							for (int d=0; d<player2.size(); d++)
@@ -215,9 +354,30 @@ public class PlayGame
 								}
 							System.out.println("What is card " + (i+1) + "?");
 							fifthSeqCard = userIntInput.nextInt();
+							if (player2.get(fifthSeqCard-1).getRank().equals(topCard.getRank()))
+								{
+							topCard = player2.get(fifthSeqCard-1);
 							player2.remove(fifthSeqCard-1);
+								}
+							else 
+								{
+									System.out.println("Bad boy. The ranks of the cards must match.");
+									System.out.println("You played a " + topCard.getRank() + " of " + topCard.getSuit() + ". Do you wish to add another card? (1) Yes (2) No");
+									correctError2 = userIntInput.nextInt();
+									if (correctError2 == 1)
+										{
+											sequences2();
+										}
+									else
+										{
+											playGame();
+										}
+								}
 							break;	
+							
 					}
+					
+					playGame();
 				}
 		}
 		
